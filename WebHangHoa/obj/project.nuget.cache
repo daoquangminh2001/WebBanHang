@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TKrWOEQhgvxqruTmF8tYXkox8Kd0pEA91nnDKEqp+c2B9LqauKf+37CYCisqusSmNNqt7SYrXfjX6O9y7qL+sA==",
+  "dgSpecHash": "lYNJXPGhnVv0vbptnjDx0xNDFqNjZdmbSwYr7BlaL3fZMc8Sz9beqiCdsOYKeZ5KjkfvwYd7Nluf6M6Tn4MvTw==",
   "success": true,
   "projectFilePath": "E:\\WebHangHoa\\WebHangHoa\\WebHangHoa.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ADmin\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\ADmin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADmin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.5\\microsoft.aspnetcore.authentication.jwtbearer.6.0.5.nupkg.sha512",
     "C:\\Users\\ADmin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

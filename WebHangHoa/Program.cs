@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Net.Mime;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -19,17 +20,6 @@ builder.Services.AddScoped<ILoaiHangHoaRespository, LoaiHangHoaRespository>();
 builder.Services.AddScoped<IHangHoaResponsitory,HangHoaResponsitory>();
 
 builder.Services.AddEndpointsApiExplorer();
-/*builder.Services.AddSwaggerGen(opt =>
-{
-    opt.AddSecurityDefinition("Oauth", new OpenApiSecurityScheme
-    {
-        Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\")",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-    opt.OperationFilter<SecurityRequirementsOperationFilter>();
-});*/
 builder.Services.AddSwaggerGen(options => {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {

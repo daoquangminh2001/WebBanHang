@@ -16,13 +16,21 @@ namespace WebHangHoa.Controllers
             _hangHoaResponsitory = hangHoaResponsitory;
         }
 
-        [HttpGet(Name ="Hehe"),Authorize(Roles = "Admin")]
-        public IActionResult Getallproduct(string? keyword,string? sortBy,double? from , double? to, int page =1)
+        [HttpGet(Name ="Hehe")/*,Authorize(Roles = "Admin")*/]
+        public IActionResult Getallproduct(string keyword,string? sortBy,double? from , double? to, int page =1)
         {
             try
-            {  
-                var result = _hangHoaResponsitory.getall(keyword,sortBy,from , to,page);
-                return Ok(result);
+            {
+                var result = _hangHoaResponsitory.getall(keyword, sortBy, from, to, page);
+                if (ModelState.IsValid)
+                {
+                    
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
             }
             catch(Exception ex)
             {

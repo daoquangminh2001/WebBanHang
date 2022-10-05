@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using WebHangHoa.Data;
 using WebHangHoa.DTO;
 using WebHangHoa.Models;
+using WebHangHoa.Service;
 
 namespace WebHangHoa.Controllers
 {
@@ -11,14 +13,24 @@ namespace WebHangHoa.Controllers
     public class HangHoaController : ControllerBase
     {
         private readonly HangHoaContext _context;
-        public HangHoaController(HangHoaContext context) {
-        _context = context;
+        private readonly IHangHoaResponsitory _hangHoa;
+
+        public HangHoaController(HangHoaContext context, IHangHoaResponsitory hangHoa)
+        {
+            _context = context;
+            _hangHoa = hangHoa;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            try { 
             var listHangHoa = _context.HangHoas.ToList();
             return Ok(listHangHoa);
+            }
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
@@ -27,6 +39,20 @@ namespace WebHangHoa.Controllers
             otp.MaHangHoa == id);
             if(temp==null)  return NotFound("deo co dau thang ngu");
             return Ok(temp);
+        }
+
+        [HttpGet("timkiem")]
+        public async Task<IActionResult> GetByKeyWord(string? input)
+        {
+            try
+            {
+                var result=_hangHoa.get_by_keyword(input);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         [HttpPost]
         public IActionResult Post(HangHoaDTO _hanghoa)
@@ -76,11 +102,18 @@ namespace WebHangHoa.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> XoaHang(Guid id)
         {
-            var check = await _context.HangHoas.FindAsync(id);
-            if(check==null) return NotFound();
-            _context.HangHoas.Remove(check);
-            _context.SaveChanges();
-            return NoContent();
+            try
+            {
+                var check = await _context.HangHoas.FindAsync(id);
+                if (check == null) return NotFound();
+                _context.HangHoas.Remove(check);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

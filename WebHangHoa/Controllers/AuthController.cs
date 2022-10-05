@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -7,7 +6,6 @@ using System.Security.Cryptography;
 using WebHangHoa.Data;
 using WebHangHoa.DTO;
 using WebHangHoa.Models;
-using WebHangHoa.Service;
 namespace WebHangHoa.Controllers
 {
     [Route("api/[controller]")]
